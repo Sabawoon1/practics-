@@ -1,36 +1,56 @@
 #include <iostream>
 #include <string>
-#include <cmath>
-#include <vector>
-using namespace  std;
-class Book{
-    string name,author;
-    int pages,yearOfIssue;
+using namespace std;
+class Book
+{
+string author;
+string name;
+int page;
 public:
-    Book(string nam,string aut): name(nam),author(aut){}
-    string getName(){
-        return name;
-    }
-    string getAuthor(){
-        return author;
-    }
-    void setName(string n){
-        this->name = n;
-    }
-    void setAuthor(string a){
-        this->author = a;
-    }
-    int getPages(){
-        return pages;
-    }
-    int getYear(){
-        return yearOfIssue;
-    }
-    void setPages(int p){
-        this->pages = p;
-    }
-    void setYear(int y){
-        this->yearOfIssue = y;}
+Book (string author, string name, int page)
+{
+setAuthor (author);
+setName (name);
+setPage (page); 
+} 
+void setAuthor (string author)
+{
+this->author=author;
+}
+void setName (string name)
+{
+this->name=name;
+}
+void setPage (int page)
+{
+this->page=page;
+}
+string getAuthor ()
+{
+return author;
+}
+string getName ()
+{
+return name;
+}
+int getPage ()
+{
+return page; 
+}
+};
+int main (){
+string author,name;
+int page;
+cout « "Enter author " « endl;
+cin » author;
+cout « "Enter name " « endl;
+cin » name;
+cout « "Enter page " «endl;
+cin » page;
+Book book (author,name,page);
+cout « "author: " « book.getAuthor() « endl;
+cout « "name: " « book.getName() « endl;
+cout « "page: " « book.getPage() « endl;
 return 0;
-system (pause);
+
 }
