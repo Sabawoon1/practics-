@@ -1,0 +1,19 @@
+
+#include <iostream>
+using namespace std;
+int main()
+{
+
+  int a{ 2 }, b{ -8 };
+
+	float c{ 4.6 }, d{ -8.5 };
+  
+	cout << "a = " << a << ", " << "b = " << b << ", " << "c = " << c << ", " << "d = " << d << endl;
+
+	cout << "a + b = " << a + b << endl << "a - b + c = " << a - b + c << endl << "d - b = " << d - b << endl;
+
+	system("pause");
+
+	return 0;
+
+}
