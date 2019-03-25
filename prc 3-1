@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+using namespace  std;
+class Book{
+    string name,author;
+    int pages,yearOfIssue;
+public:
+    Book(string nam,string aut): name(nam),author(aut){}
+    string getName(){
+        return name;
+    }
+    string getAuthor(){
+        return author;
+    }
+    void setName(string n){
+        this->name = n;
+    }
+    void setAuthor(string a){
+        this->author = a;
+    }
+    int getPages(){
+        return pages;
+    }
+    int getYear(){
+        return yearOfIssue;
+    }
+    void setPages(int p){
+        this->pages = p;
+    }
+    void setYear(int y){
+        this->yearOfIssue = y;}
+return 0;
+system (pause);
+}
