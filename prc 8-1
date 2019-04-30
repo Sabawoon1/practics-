@@ -1,0 +1,21 @@
+
+#include<iostream>
+#include<string>
+#include<fstream>
+using namespace std;
+
+int main()
+{
+	string w;
+	cout << "Input text" << endl;
+	getline(cin,w);
+	ofstream fout("test.txt");
+	fout << w;
+	fout.close();
+	ifstream fin("test.txt");
+	while (fin >> w)
+		cout << w<< endl;
+	fin.close();
+	system("pause");
+	return 0;
+}
