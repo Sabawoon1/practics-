@@ -1,63 +1,38 @@
-#include "pch.h"
 #include <iostream>
-#include <cmath>
 #include <string>
 using namespace std;
-
 class Vehicle {
-protected:int massa;
-		  int skorost;
-		  string name;
-public:Vehicle() {
-	setlocale(LC_ALL, "Russian");
-	cout << "Введите массу, скорость и название" << endl;
-	cin >> massa >> skorost >> name;
-}
-	   virtual  void kto_ya() = 0;
-};
-class Bycicle :public Vehicle {
 public:
-	Bycicle() :Vehicle() {  }
-	void kto_ya() {
-		setlocale(LC_ALL, "Russian");
-		cout << "Я велосипед:" << name << ' ' << skorost << "км/ч" << massa << "кг" << endl;
-	}
-
+	virtual void CountPassenger() = 0;
 };
-class Bus :public Vehicle {
+class Auto : public Vehicle {
 public:
-	Bus() :Vehicle() {}
-	void kto_ya() {
-		setlocale(LC_ALL, "Russian");
-		cout << "Я автобус:" << name << ' ' << skorost << "км/ч " << massa << "кг" << endl;
+	void CountPassenger() override {
+		cout << "5 Passenger" << endl;
 	}
-
 };
-
-class Avto :public Vehicle {
+class Bus : public Vehicle {
 public:
-	Avto() :Vehicle() { }
-	void kto_ya() {
-		setlocale(LC_ALL, "Russian");
-		cout << "Я машина" << name << ' ' << skorost << "км/ч " << massa << "кг" << endl;
+	void CountPassenger() override {
+		cout << "1000000 Passenger" << endl;
 	}
-
 };
-int main()
-{
-	string z;
-	setlocale(LC_ALL, "Russian");
-	cout << "Введите транспортное средство (bus, bycicle, avto)" << endl;
-	cin >> z;
-	if (z == "bus") {
-		Bus a; a.kto_ya();
+class Bicycle : public Vehicle {
+public:
+	void CountPassenger() override {
+		cout <<"1 Passenger"  << endl;
 	}
-	else if (z == "avto") {
-		Avto a; a.kto_ya();
-	}
-	else if (z == "bycicle") {
-		Bycicle a; a.kto_ya();
-	}
+};
+int main() {
+	Bicycle a;
+	Auto b;
+	Bus c;
+	Vehicle *passenger1 = &a;
+	passenger1->CountPassenger();
+	Vehicle *passenger2 = &b;
+	passenger2->CountPassenger();
+	Vehicle *passenger3 = &c;
+	passenger3->CountPassenger();
 	system("pause");
 	return 0;
 }
