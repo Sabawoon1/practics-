@@ -1,79 +1,92 @@
-
-#include<string>
+#include <iostream>
+#include <string>
 using namespace std;
-class Screen
-{
-	protected:
-		bool power;
-	public:
-		Screen() : power(0) {};
-		virtual void turnOn() = 0;
-		virtual void turnOff() = 0;
+class Screen {
+protected:
+	double width, length;
+public:
+	virtual void diagonal() = 0;
 };
-class Keyboard
-{
-	protected:
-		string text;
-	public:
-		Keyboard(): text("Hello!") {};
-		virtual void typeText(string t) = 0;
-};
-class Laptop: public Screen, public Keyboard
-{
-	public:
-		Laptop() {};
-		void turnOn() { power = 1; }
-		void turnOff() { power = 0; }
+class Keyboard {
+protected:
+	int key;
+public:
 
-		void typeText(string t) { text = t; }
-		void state()
-		{
-			if (power) cout << "Laptop on" << endl  << "Text:" << endl << text << endl;
-			else cout << "Laptop off" << endl;
-		}
-
+	virtual void countkey() = 0;
 };
-class Mobile : public Screen, public Keyboard
-{
-	public:
-		Mobile() {};
-		void turnOn() { power = 1; }
-		void turnOff() { power = 0; }
-		void typeText(string t) { text = t; }
-		void state()
-		{
-			if (power) cout << "Mobile on" << endl << "Text:" << endl << text << endl;
-			else cout << "Movile off" << endl;
-		}
+class Notebook :public Screen, public Keyboard {
+	string brand;
+public:
+	void setBrand(string brand) {
+		this->brand = brand;
+	}
+	void printBrand() {
+		cout << "Brand : " <<brand<< endl;
+	}
+	void diagonal() override {
+		cout << "Diagonali = 17.3" << endl;
+	}
+	void countkey() override {
+		cout << "countkey = 50" << endl;
+	}
 };
-class PC : public Screen, public Keyboard
-{
-	private:
-		bool PCpower;
-	public:
-		PC() : PCpower(0) {};
-		void turnOn() { PCpower = 1; power = 1; }
-		void turnOff() { PCpower = 0; power = 0; }
-		void typeText(string t) { text = t; }
-		void state()
-		{
-			if (power && PCpower) cout << "PC on" << endl << "Text:" << endl << text << endl;
-			else cout << "PC off" << endl;
-		}
+class Phone :public Screen, public Keyboard {
+	string brand;
+public:
+	void setBrand(string brand) {
+		this->brand = brand;
+	}
+	void printBrand() {
+		cout << "Brand : " << brand << endl;
+	}
+	void diagonal() override {
+		cout << "Diagonali = 6.7" << endl;
+	}
+	void countkey() override {
+		cout << "countkey = 0" << endl;
+	}
 };
-int main()
-
-{
-	Laptop l;
-	Mobile m;
-	PC p;
-	l.turnOn();
-	l.state();
-	m.turnOn();
-	m.state();
-	p.turnOn()
-	p.state()
-
+class PC :public Screen, public Keyboard {
+	string brand;
+public:
+	void setBrand(string brand) {
+		this->brand = brand;
+	}
+	void printBrand() {
+		cout << "Brand : " << brand << endl;
+	}
+	void diagonal() override {
+		cout << "Diagonali = 35" << endl;
+	}
+	void countkey() override {
+		cout << "countkey = 70" << endl;
+	}
+};
+int main() {
+	Notebook a;
+	a.setBrand("MSI");
+	Phone b;
+	b.setBrand("SONY");
+	PC c;
+	c.setBrand("Noname");
+	Screen  *data1 = &a;
+	Keyboard *data2 = &a;
+	a.printBrand();
+	data1->diagonal();
+	data2->countkey();
+	cout << endl;
+	Screen  *data3 = &b;
+	Keyboard *data4 = &b;
+	b.printBrand();
+	data3->diagonal();
+	data4->countkey();
+	cout << endl;
+	Screen  *data5 = &c;
+	Keyboard *data6 = &c;
+	c.printBrand();
+	data5->diagonal();
+	data6->countkey();
+	cout << endl;
 	system("pause");
 	return 0;
 }
