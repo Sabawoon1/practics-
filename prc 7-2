@@ -1,55 +1,43 @@
-#include "pch.h"
 #include <iostream>
-#include <cmath>
+#include <string>
 using namespace std;
-class Forug {
-protected:
-	int a1, a2, a3, a4;
+class Figure{
 public:
-	Forug() {
-		setlocale(LC_ALL, "Russian");
-		cout << "Введите длины сторон" << endl;
-		cin >> a1 >> a2 >> a3 >> a4;
-	}
-	virtual void sqaire() = 0;
+	virtual void Square() = 0;
 };
-class Romb :public Forug {
+class Quadrilateral : public Figure {
 public:
-	double sinus;
-	Romb() :Forug() {
-		setlocale(LC_ALL, "Russian");
-		cout << "Введите меньший угол" << endl;
-		cin >> sinus;
+	virtual void Square() = 0;
+};
+class Rhombus : public Quadrilateral {
+	double d1, d2;
+public:
+	Rhombus(double d1, double d2) {
+		this->d1 = d1;
+		this->d2 = d2;
 	}
-	void sqaire() {
-		cout << a1 * a1*sin(sinus) << endl;;
+	void Square() override {
+		cout<< d1*d2 / 2<<endl;
 	}
 };
-class Pryamougolnic :public Forug {
+class Rectangle : public Quadrilateral {
+	double a, b;
 public:
-	Pryamougolnic() :Forug() {
+	Rectangle(double a, double b) {
+		this->a = a;
+		this->b = b;
 	}
-	void sqaire() {
-		cout << a1 * a3 << endl;
+	void Square() override {
+		cout<< a * b<<endl;
 	}
 };
-class Figure {
-public:
-	void sqaire(Forug *forug) {
-		setlocale(LC_ALL, "Russian");
-		cout << "Площадь равна :";
-		forug->sqaire();
-	}
-
-};
-
-int main()
-{
-	Pryamougolnic c;
-	Romb b;
-	Figure a;
-	a.sqaire(&b);
-	a.sqaire(&c);
+int main() {
+	Rectangle a(13, 37);
+	Rhombus b(13, 37);
+	Figure *square1 = &a;
+	square1->Square();
+	Figure *square2 = &b;
+	square2->Square();
 	system("pause");
 	return 0;
 }
